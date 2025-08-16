@@ -1,5 +1,4 @@
-import turtle
-from turtle import Screen, Turtle
+from turtle import Screen
 import time
 
 from score_board import Score
@@ -47,13 +46,14 @@ while game_is_on:
         user_score.add_point()
     #detect collision with wall
     if snake.head.xcor() >  280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
-        game_is_on = False
-        user_score.game_over()
+        user_score.reset()
+        snake.reset()
     #detects collision with own tail
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) < 10:
-            game_is_on = False
-            user_score.game_over()
+            user_score.reset()
+            snake.reset()
+
 
 
 screen.exitonclick()
